@@ -1,0 +1,41 @@
+.about-container {
+  margin-top: 80px;
+}
+
+.about-title {
+  color: #f25c1e;
+  font-size: xx-large;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 1px;
+}
+
+.about-text {
+  color: #333;
+  line-height: 1.7;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+
+.about-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    text-align: center;
+  }
+
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .about-text {
+    font-size: 0.95rem;
+  }
+
+  .about-image {
+    width: 80%;
+  }
+}
