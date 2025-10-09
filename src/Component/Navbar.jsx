@@ -25,7 +25,9 @@ import "../Assets/Navbar.css";
 
         <div className="nav-icons">
           <FaSearch className="nav-icon" />
-          <FaUser className="nav-icon user-icon" />
+          <Link to="/signup">
+            <FaUser className="nav-icon user-icon" />
+          </Link>
         </div>
 
         <div
