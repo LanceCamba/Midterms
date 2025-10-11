@@ -71,7 +71,8 @@ function AdminLogin() {
 
   return (
     <div className="signup-container">
-      <form onSubmit={handleAdminLogin} className="signup-form">
+      <div className="box">
+        <form onSubmit={handleAdminLogin} id="sheetdb-form" className="form">
         <img src={logo} alt="Metro Express Logo" className="logo" />
 
         <h3 className="admin-title">Admin Login</h3>
@@ -105,6 +106,7 @@ function AdminLogin() {
           </Link>
         </p>
       </form>
+      </div>
     </div>
   );
 }

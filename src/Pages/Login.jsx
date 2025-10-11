@@ -62,26 +62,15 @@ function Login() {
 
   return (
     <div className="signup-container">
-      <form onSubmit={handleLogin} className="signup-form">
+      <div className="box">
+        <form onSubmit={handleLogin} id="sheetdb-form" className="form">
         <img src={logo} alt="Metro Express Logo" className="logo" />
 
         <label htmlFor="email">Email:</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          required
-        />
+        <input id="email" type="email" name="email" placeholder="Enter your email" required/>
 
         <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter your password"
-          name="password"
-          required
-        />
+        <input type="password" id="password" placeholder="Enter your password" name="password" required/>
 
         <button type="submit" className="button" disabled={loading}>
           {loading ? "Logging in..." : "Log In"}
@@ -94,6 +83,9 @@ function Login() {
           </Link>
         </p>
       </form>
+        
+      </div>
+      
     </div>
   );
 }

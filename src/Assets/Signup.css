@@ -9,25 +9,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  margin-top: 20px;
 }
 
-.signup-form {
-  background-color: #f1f1f1;
-  padding: 30px;
-  border-radius: 10px;
+.box {
+  width: 600px;
+  background: #e5e5e5;
+  border-radius: 12px;
   border-style: inset;
-  width: 400px;
+  padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  max-width: 180px;
-  display: block;
-  margin: 0 auto 15px;
-}
-
-label {
+.form label {
   display: block;
   text-align: left;
   color: #444;
@@ -35,13 +29,18 @@ label {
   font-size: 18px;
 }
 
-input {
+.form input {
   width: 100%;
   padding: 8px 12px;
-  margin: 5px 0;
+  margin: 5px 0 15px 0;
   border-radius: 10px;
   border: 1px solid #aaa;
   font-size: 16px;
+}
+
+.logo {
+  max-width: 300px;
+  margin-bottom: 15px;
 }
 
 .button {
@@ -51,9 +50,6 @@ input {
   border-radius: 10px;
   padding: 10px;
   width: 100%;
-  margin-top: 15px;
-
-  margin-top: 20px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -62,11 +58,12 @@ input {
   background-color: #e4572e;
 }
 
-.link {
-  float: right;
-  margin-top: 5px;
-}
-
 .sText {
   margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .box {
+    width: 90%;
+  }
 }

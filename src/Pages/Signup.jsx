@@ -43,48 +43,29 @@ function Signup() {
 
   return (
     <div className="signup-container">
-      <form onSubmit={handleSubmit} id="sheetdb-form" className="signup-form">
-        <img src={logo} alt="Metro Express Logo" className="logo" />
+      <div className="box">
+        <form onSubmit={handleSubmit} id="sheetdb-form" className="form">
+          <img src={logo} alt="Metro Express Logo" className="logo" />
 
-        <label htmlFor="name">Name:</label>
-        <input
-          id="name"
-          type="text"
-          name="data[Name]"
-          placeholder="Full Name"
-          required
-        />
+          <label htmlFor="name">Name:</label>
+          <input id="name" type="text" name="data[Name]" placeholder="Full Name" required />
 
-        <label htmlFor="email">Email:</label>
-        <input
-          id="email"
-          type="email"
-          name="data[Email]"
-          placeholder="Enter your email"
-          required
-        />
+          <label htmlFor="email">Email:</label>
+          <input id="email" type="email" name="data[Email]" placeholder="Enter your email" required />
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter your password"
-          name="data[Password]"
-          required
-        />
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" name="data[Password]" placeholder="Enter your password" required />
 
-        <button type="submit" className="button">
-          Sign Up
-        </button>
+          <button type="submit" className="button">Sign Up</button>
 
-        <p className="sText">
-          Already have an account?{" "}
-          <Link to="/login" className="login-link">
-            Log In
-          </Link>
-        </p>
-      </form>
+          <p className="sText">
+            Already have an account?{" "}
+            <Link to="/login" className="login-link">Log In</Link>
+          </p>
+        </form>
+      </div>
     </div>
+
   );
 }
 
