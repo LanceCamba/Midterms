@@ -1,0 +1,115 @@
+.container {
+  background-color: #f9fafb;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  max-width: 1200px;
+}
+
+h2 {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.table {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: #333;
+}
+
+.table th {
+  background-color: #f25c1e;
+  color: #333;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+.table td {
+  vertical-align: middle;
+  font-size: 15px;
+  color: #333;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f5f7fa;
+}
+
+/* === INPUT FIELDS FOR EDIT MODE === */
+input {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* === BUTTON STYLES === */
+.btn {
+  border-radius: 8px;
+  padding: 5px 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #bb2d3b;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+/* === PAGINATION === */
+.pagination {
+  margin-top: 30px;
+}
+
+.page-item.active .page-link {
+  background-color: #f25c1e;
+  border-color: #222831;
+  color: #333;
+}
+
+.page-link {
+  border-color: #222831;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.page-link:hover {
+  background-color: #d94d15;
+  color: #333;
+}

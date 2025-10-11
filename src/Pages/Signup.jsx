@@ -1,9 +1,13 @@
 import React from "react";
+import { useNavigate, Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Assets/Signup.css";
-import logo from "../Assets/maxbus logo.svg";
+import logo from "../Assets/metro.png";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -14,21 +18,42 @@ function Signup() {
     });
 
     if (response.ok) {
-      alert("Success!");
+      Swal.fire({
+        title: "Account Created!",
+        text: "You’ve successfully signed up. Redirecting to the homepage...",
+        icon: "success",
+        confirmButtonColor: "#007bff",
+        timer: 2000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+      }).then(() => {
+        navigate("/"); // ✅ redirect to homepage
+      });
+
       form.reset();
     } else {
-      alert("Something went wrong. Try again.");
+      Swal.fire({
+        title: "Oops!",
+        text: "Something went wrong. Please try again.",
+        icon: "error",
+        confirmButtonColor: "#d33",
+      });
     }
   };
 
   return (
     <div className="signup-container">
-      <form
-        onSubmit={handleSubmit}
-        id="sheetdb-form"
-        className="signup-form"
-      >
+      <form onSubmit={handleSubmit} id="sheetdb-form" className="signup-form">
         <img src={logo} alt="Metro Express Logo" className="logo" />
+
+        <label htmlFor="name">Name:</label>
+        <input
+          id="name"
+          type="text"
+          name="data[Name]"
+          placeholder="Full Name"
+          required
+        />
 
         <label htmlFor="email">Email:</label>
         <input
@@ -48,16 +73,15 @@ function Signup() {
           required
         />
 
-        <a href="#" className="link">
-          Forgot Password?
-        </a>
-
         <button type="submit" className="button">
           Sign Up
         </button>
 
         <p className="sText">
-          Already have an account? <a href="#">Log In</a>
+          Already have an account?{" "}
+          <Link to="/login" className="login-link">
+            Log In
+          </Link>
         </p>
       </form>
     </div>
