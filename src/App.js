@@ -7,6 +7,7 @@ import HomePage from "./Pages/HomePage";
 import RoutePage from "./Pages/RoutePage";
 import Stations from "./Pages/Stations";
 import About from "./Pages/About";
+import Favorites from "./Pages/Favorites";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import AdminLogin from "./Pages/AdminLogin";

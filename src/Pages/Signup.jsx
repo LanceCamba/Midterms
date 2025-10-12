@@ -27,7 +27,7 @@ function Signup() {
         timerProgressBar: true,
         showConfirmButton: false,
       }).then(() => {
-        navigate("/"); // ✅ redirect to homepage
+        navigate("/"); 
       });
 
       form.reset();
