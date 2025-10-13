@@ -4,7 +4,7 @@ import "../Assets/Schedule.css";
 const Schedule = () => {
   const [schedule, setSchedule] = useState([]);
   const SHEET_ID = "1rgbKL2dsFTFJBG_i5gFQ4BH3MvoVXX4-weq4rJiZ_yo";
-  const SHEET_NAME = "Sheet1"; // Change if your tab name differs
+  const SHEET_NAME = "Sheet1"; 
   const API_URL = `https://opensheet.elk.sh/${SHEET_ID}/${SHEET_NAME}`;
 
   useEffect(() => {
@@ -15,7 +15,6 @@ const Schedule = () => {
 
         const now = new Date();
 
-        // Filter out past times and sort upcoming ones
         const filtered = data
           .filter((row) => row.Time)
           .filter((row) => {

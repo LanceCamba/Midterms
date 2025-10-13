@@ -29,7 +29,7 @@ const Navbar = () => {
           <li><Link to="/about" onClick={() => setIsOpen(false)}>About</Link></li>
           <li><Link to="/stations" onClick={() => setIsOpen(false)}>Stations</Link></li>
           <li><Link to="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link></li>
-          <li><Link to="/favotites" onClick={() => setIsOpen(false)}>Favorites</Link></li>
+          <li><Link to="/favorites" onClick={() => setIsOpen(false)}>Favorites</Link></li>
         </ul>
 
         <div className="nav-icons">

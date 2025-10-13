@@ -32,6 +32,7 @@ function AppContent() {
         <Route path="/routes/:routeId" element={<RoutePage />} />
         <Route path="/Stations" element={<Stations />} />
         <Route path="/about" element={<About />} />
+        <Route path="/favorites" element={<Favorites />} /> 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminLogin />} />

@@ -9,6 +9,13 @@
   margin-bottom: 30px;
 }
 
+.empty-favorites {
+  font-size: 1.2rem;
+  color: #2d7d32;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
 .favorites-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -46,4 +53,38 @@
 .fav-card p {
   color: #1c7c32;
   font-size: 0.9rem;
+}
+
+.remove-btn {
+  margin-top: 10px;
+  background: #f15f0a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.fav-card img.fav-map {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fav-card img.fav-map:hover {
+  transform: scale(1.05);
+}
+
+.remove-btn:hover {
+  background: #cc4e07;
+}
+@media (max-width: 600px) {
+  .favorites-container {
+    padding: 20px;
+  }
+
+  .fav-card {
+    width: 100%;
+  }
 }
