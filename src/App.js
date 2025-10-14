@@ -7,6 +7,7 @@ import HomePage from "./Pages/HomePage";
 import RoutePage from "./Pages/RoutePage";
 import Stations from "./Pages/Stations";
 import About from "./Pages/About";
+import Favorites from "./Pages/Favorites";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import AdminLogin from "./Pages/AdminLogin";
@@ -31,6 +32,7 @@ function AppContent() {
         <Route path="/routes/:routeId" element={<RoutePage />} />
         <Route path="/Stations" element={<Stations />} />
         <Route path="/about" element={<About />} />
+        <Route path="/favorites" element={<Favorites />} /> 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<AdminLogin />} />

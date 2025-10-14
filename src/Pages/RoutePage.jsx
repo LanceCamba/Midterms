@@ -1,70 +1,95 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "../Assets/RoutePage.css";
-import Bus from "../Assets/Bus.jpg"; 
+import Schedule from "../Component/Schedule";
+import RouteMap from "../Component/RouteMap";
+import { FaBus } from "react-icons/fa";
 
 function RoutePage() {
-  const { routeId } = useParams();
+  const routeName = "IMUS → MAKATI";
+  const routeId = "imus-makati"; // used to open this page again
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
-  const routeData = {
-    "imus-makati": {
-      from: "IMUS",
-      to: "MAKATI",
-      days: "Monday - Saturday",
-      image: Bus, 
-      schedules: [
-        "5:00 AM - First Trip",
-        "6:30 AM - Second Trip",
-        "8:00 AM - Third Trip",
-        "10:00 AM - Fourth Trip",
-      ],
-    },
-    "alabang-cubao": {
-      from: "ALABANG",
-      to: "CUBAO",
-      days: "Monday - Sunday",
-      image: Bus,
-      schedules: [
-        "6:00 AM - First Trip",
-        "8:00 AM - Second Trip",
-        "10:00 AM - Third Trip",
-        "1:00 PM - Fourth Trip",
-      ],
-    },
+  // Load favorite status
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(stored.some((r) => r.routeId === routeId));
+  }, [routeId]);
+
+  const handleFavorite = () => {
+    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
+    const exists = stored.some((r) => r.routeId === routeId);
+
+    let updated;
+    if (exists) {
+      updated = stored.filter((r) => r.routeId !== routeId);
+      showPopup("Removed from Favorites");
+    } else {
+      updated = [
+        ...stored,
+        {
+          routeId,
+          routeName,
+          image: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=enc:encodedpath&key=AIzaSyA4HA3XYnt5P3VMX2AquW1wI6_pG1izYE0`,
+          details: "Monday - Saturday ",
+        },
+      ];
+      showPopup("Added to Favorites ");
+    }
+
+    localStorage.setItem("favorites", JSON.stringify(updated));
+    setIsFavorite(!exists);
   };
 
-  const route = routeData[routeId];
-
-  if (!route) {
-    return (
-      <div className="route-container">
-        <h2>Route not found.</h2>
-      </div>
-    );
-  }
+  const showPopup = (message) => {
+    setShowToast(message);
+    setTimeout(() => setShowToast(false), 2000);
+  };
 
   return (
     <div className="route-container">
-      <div className="route-content">
-        <div className="route-image">
-          <img src={route.image} alt={`${route.from} to ${route.to}`} />
+      {/* LEFT SIDE (MAP) */}
+      <div className="route-left">
+        <div className="map-container">
+          <RouteMap />
         </div>
 
-        <div className="route-info">
+        <div className="travel-info">
+          <p>
+            <strong>Estimated Time:</strong> 43–54 mins{" "}
+            <strong>Distance:</strong> 25–33 km
+          </p>
+        </div>
+      </div>
+
+      {/* RIGHT SIDE (INFO) */}
+      <div className="route-right">
+        <div className="route-title-container">
           <h2 className="route-title">
-            {route.from} <span className="arrow">→</span> {route.to}
+            <span className="from">IMUS</span>{" "}
+            <span className="arrow">→</span>{" "}
+            <span className="to">MAKATI</span>
           </h2>
-          <h5 className="route-days">{route.days}</h5>
 
-          <div className="schedule-box">
-            <h6>Schedules:</h6>
-            <ul>
-              {route.schedules.map((schedule, index) => (
-                <li key={index}>{schedule}</li>
-              ))}
-            </ul>
-          </div>
+          <button
+            className={`fav-btn ${isFavorite ? "active" : ""}`}
+            onClick={handleFavorite}
+            title={isFavorite ? "Remove from favorites" : "Add to favorites"}
+          >
+            <FaBus />
+          </button>
         </div>
+
+        <p className="days">Monday - Saturday</p>
+
+        <div className="schedule-box">
+          <h3>
+            <strong>Schedules:</strong>
+          </h3>
+          <Schedule />
+        </div>
+
+        {showToast && <div className="toast-popup">{showToast}</div>}
       </div>
     </div>
   );
