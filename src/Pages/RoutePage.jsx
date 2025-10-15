@@ -1,16 +1,47 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "../Assets/RoutePage.css";
 import Schedule from "../Component/Schedule";
 import RouteMap from "../Component/RouteMap";
 import { FaBus } from "react-icons/fa";
 
 function RoutePage() {
-  const routeName = "IMUS → MAKATI";
-  const routeId = "imus-makati"; // used to open this page again
+  const { routeId } = useParams(); 
   const [isFavorite, setIsFavorite] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [time, setTime] = useState("");
 
-  // Load favorite status
+  const routes = {
+    "imus-makati": { name: "IMUS → MAKATI", sheet: "IMUS-MAKATI" },
+    "makati-imus": { name: "MAKATI → IMUS", sheet: "MAKATI-IMUS" },
+    "atc-greenbelt": { name: "ATC → GREENBELT", sheet: "ATC-GREENBELT" },
+    "greenbelt-atc": { name: "GREENBELT → ATC", sheet: "GREENBELT-ATC" },
+    "atc-greenhills": { name: "ATC → GREENHILLS", sheet: "ATC-GREENHILLS" },
+    "greenhills-atc": { name: "GREENHILLS → ATC", sheet: "GREENHILLS-ATC" },
+    "laspinas-makati": { name: "LAS PIÑAS → MAKATI", sheet: "LASPINAS-MAKATI" },
+    "makati-laspinas": { name: "MAKATI → LAS PIÑAS", sheet: "MAKATI-LASPINAS" },
+    "calamba-bgc": { name: "CALAMBA → BGC", sheet: "CALAMBA-BGC" },
+    "bgc-calamba": { name: "BGC → CALAMBA", sheet: "BGC-CALAMBA" },
+    "nuvali-makati": { name: "NUVALI → MAKATI", sheet: "NUVALI-MAKATI" },
+    "makati-nuvali": { name: "MAKATI → NUVALI", sheet: "MAKATI-NUVALI" },
+  };
+
+  const route = routes[routeId] || routes["imus-makati"]; 
+  const { name, sheet } = route;
+
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      setTime(
+        now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      );
+    };
+    update();
+    const timer = setInterval(update, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // load favorite state
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("favorites")) || [];
     setIsFavorite(stored.some((r) => r.routeId === routeId));
@@ -29,31 +60,28 @@ function RoutePage() {
         ...stored,
         {
           routeId,
-          routeName,
-          image: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=enc:encodedpath&key=AIzaSyA4HA3XYnt5P3VMX2AquW1wI6_pG1izYE0`,
-          details: "Monday - Saturday ",
+          routeName: name,
+          image: `/maps/${routeId}.png`, 
+          details: "Monday - Saturday | 43–54 mins | 25–33 km",
         },
       ];
-      showPopup("Added to Favorites ");
+      showPopup("Added to Favorites");
     }
-
     localStorage.setItem("favorites", JSON.stringify(updated));
     setIsFavorite(!exists);
   };
 
-  const showPopup = (message) => {
-    setShowToast(message);
+  const showPopup = (msg) => {
+    setShowToast(msg);
     setTimeout(() => setShowToast(false), 2000);
   };
 
   return (
     <div className="route-container">
-      {/* LEFT SIDE (MAP) */}
       <div className="route-left">
         <div className="map-container">
-          <RouteMap />
+          <RouteMap routeId={routeId} />
         </div>
-
         <div className="travel-info">
           <p>
             <strong>Estimated Time:</strong> 43–54 mins{" "}
@@ -62,33 +90,24 @@ function RoutePage() {
         </div>
       </div>
 
-      {/* RIGHT SIDE (INFO) */}
       <div className="route-right">
         <div className="route-title-container">
-          <h2 className="route-title">
-            <span className="from">IMUS</span>{" "}
-            <span className="arrow">→</span>{" "}
-            <span className="to">MAKATI</span>
-          </h2>
-
+          <h2 className="route-title">{name}</h2>
           <button
             className={`fav-btn ${isFavorite ? "active" : ""}`}
             onClick={handleFavorite}
-            title={isFavorite ? "Remove from favorites" : "Add to favorites"}
           >
             <FaBus />
           </button>
         </div>
 
         <p className="days">Monday - Saturday</p>
-
         <div className="schedule-box">
-          <h3>
-            <strong>Schedules:</strong>
-          </h3>
-          <Schedule />
+          <h3><strong>Schedules:</strong></h3>
+          <Schedule sheetName={sheet} />
         </div>
 
+        <p className="current-time">Current Time: {time}</p>
         {showToast && <div className="toast-popup">{showToast}</div>}
       </div>
     </div>
