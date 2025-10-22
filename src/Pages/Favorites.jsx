@@ -42,6 +42,10 @@ function Favorites() {
          <div className="favorites-grid">
           {favorites.map((fav, i) => {
             const mapLink = MAP_LINKS[fav.routeId];
+<<<<<<< Updated upstream
+=======
+            // optional static preview image (you can change this to dynamic screenshot service later)
+>>>>>>> Stashed changes
             const staticMapImg = `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(
               fav.routeName
             )}&zoom=11&size=400x300&maptype=roadmap&key=${
