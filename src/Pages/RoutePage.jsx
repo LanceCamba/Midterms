@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "../Assets/RoutePage.css";
 import Schedule from "../Component/Schedule";
 import RouteMap from "../Component/RouteMap";
 import { FaBus } from "react-icons/fa";
 
 function RoutePage() {
-  const routeName = "IMUS → MAKATI";
-  const routeId = "imus-makati"; // used to open this page again
+  const { routeId } = useParams(); 
   const [isFavorite, setIsFavorite] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [time, setTime] = useState("");
 
   const loggedInUser = sessionStorage.getItem("loggedInUser");
 
@@ -33,31 +34,29 @@ function RoutePage() {
         ...stored,
         {
           routeId,
-          routeName,
-          image: `https://maps.googleapis.com/maps/api/staticmap?size=400x200&path=enc:encodedpath&key=AIzaSyA4HA3XYnt5P3VMX2AquW1wI6_pG1izYE0`,
-          details: "Monday - Saturday ",
+          routeName: name,
+          image: `/maps/${routeId}.png`, 
+          details: "Monday - Saturday | 43–54 mins | 25–33 km",
         },
       ];
-      showPopup("Added to Favorites ");
+      showPopup("Added to Favorites");
     }
 
     localStorage.setItem(key, JSON.stringify(updated));
     setIsFavorite(!exists);
   };
 
-  const showPopup = (message) => {
-    setShowToast(message);
+  const showPopup = (msg) => {
+    setShowToast(msg);
     setTimeout(() => setShowToast(false), 2000);
   };
 
   return (
     <div className="route-container">
-      {/* LEFT SIDE (MAP) */}
       <div className="route-left">
         <div className="map-container">
-          <RouteMap />
+          <RouteMap routeId={routeId} />
         </div>
-
         <div className="travel-info">
           <p>
             <strong>Estimated Time:</strong> 43–54 mins{" "}
@@ -66,33 +65,24 @@ function RoutePage() {
         </div>
       </div>
 
-      {/* RIGHT SIDE (INFO) */}
       <div className="route-right">
         <div className="route-title-container">
-          <h2 className="route-title">
-            <span className="from">IMUS</span>{" "}
-            <span className="arrow">→</span>{" "}
-            <span className="to">MAKATI</span>
-          </h2>
-
+          <h2 className="route-title">{name}</h2>
           <button
             className={`fav-btn ${isFavorite ? "active" : ""}`}
             onClick={handleFavorite}
-            title={isFavorite ? "Remove from favorites" : "Add to favorites"}
           >
             <FaBus />
           </button>
         </div>
 
         <p className="days">Monday - Saturday</p>
-
         <div className="schedule-box">
-          <h3>
-            <strong>Schedules:</strong>
-          </h3>
-          <Schedule />
+          <h3><strong>Schedules:</strong></h3>
+          <Schedule sheetName={sheet} />
         </div>
 
+        <p className="current-time">Current Time: {time}</p>
         {showToast && <div className="toast-popup">{showToast}</div>}
       </div>
     </div>

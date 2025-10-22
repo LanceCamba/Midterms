@@ -5,7 +5,8 @@
 
 .favorites-title {
   color: #f15f0a;
-  font-weight: 800;
+  font-weight: bold;
+  font-weight: 800px;
   margin-bottom: 30px;
 }
 
@@ -44,10 +45,10 @@
   transform: translateY(-4px);
 }
 
-.fav-card h3 {
+.fav-card h4 {
   color: #f15f0a;
   margin: 8px 0 3px;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .fav-card p {
@@ -56,7 +57,7 @@
 }
 
 .remove-btn {
-  margin-top: 10px;
+  margin-top: -10px;
   background: #f15f0a;
   color: white;
   border: none;
