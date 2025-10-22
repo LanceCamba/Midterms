@@ -18,10 +18,12 @@
 }
 
 .favorites-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 25px; 
+  margin-top: 30px;
 }
 
 .fav-card {
@@ -43,6 +45,7 @@
 
 .fav-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .fav-card h4 {
@@ -75,6 +78,14 @@
 
 .fav-card img.fav-map:hover {
   transform: scale(1.05);
+}
+
+.view-map-btn {
+  color: #cc4e07;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .remove-btn:hover {

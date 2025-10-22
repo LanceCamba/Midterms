@@ -6,26 +6,61 @@ import RouteMap from "../Component/RouteMap";
 import { FaBus } from "react-icons/fa";
 
 function RoutePage() {
-  const { routeId } = useParams(); 
   const [isFavorite, setIsFavorite] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [time, setTime] = useState("");
 
-  const loggedInUser = sessionStorage.getItem("loggedInUser");
+  const { routeId } = useParams();
+  console.log("ROUTE ID:", routeId);
+  
+  const routes = {
+    "imus-makati": { name: "IMUS → MAKATI", sheet: "IMUS-MAKATI" },
+    "makati-imus": { name: "MAKATI → IMUS", sheet: "MAKATI-IMUSs" },
+    "atc-greenbelt": { name: "ATC → GREENBELT", sheet: "ATC-GREENBELT" },
+    "greenbelt-atc": { name: "GREENBELT → ATC", sheet: "GREENBELT-ATC" },
+    "atc-greenhills": { name: "ATC → GREENHILLS", sheet: "ATC-GREENHILLS" },
+    "greenhills-atc": { name: "GREENHILLS → ATC", sheet: "GREENHILLS-ATC" },
+    "laspinas-makati": { name: "LAS PIÑAS → MAKATI", sheet: "LASPINAS-MAKATI" },
+    "makati-laspinas": { name: "MAKATI → LAS PIÑAS", sheet: "MAKATI-LASPINAS" },
+    "calamba-bgc": { name: "CALAMBA → BGC", sheet: "CALAMBA-BGC" },
+    "bgc-calamba": { name: "BGC → CALAMBA", sheet: "BGC-CALAMBA" },
+    "nuvali-makati": { name: "NUVALI → MAKATI", sheet: "NUVALI-MAKATI" },
+    "makati-nuvali": { name: "MAKATI → NUVALI", sheet: "MAKATI-NUVALI" },
+  };
+  
+  const route = routes[routeId] || null;
+  const name = route?.name || "Route Not Found";
+  const sheet = route?.sheet || null;
+  
+  useEffect(() => {
+    const now = new Date();
+    setTime(now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+    const timer = setInterval(() => {
+      const n = new Date();
+      setTime(n.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
-    if (!loggedInUser) return;
-    const savedFavorites =
-      JSON.parse(localStorage.getItem(`${loggedInUser}-favorites`)) || [];
-    setIsFavorite(savedFavorites.some((r) => r.routeId === routeId));
-  }, [routeId, loggedInUser]);
+    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
+    setIsFavorite(stored.some((r) => r.routeId === routeId));
+  }, [routeId]);
+  
+  if (!route) {
+  return (
+    <div className="route-container">
+      <h2 style={{ textAlign: "center", color: "#e65c00", width: "100%" }}>
+        Route not found
+      </h2>
+    </div>
+  );}
 
   const handleFavorite = () => {
-    const key = `${loggedInUser}-favorites`;
-    const stored = JSON.parse(localStorage.getItem(key)) || [];
+    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
     const exists = stored.some((r) => r.routeId === routeId);
-
     let updated;
+
     if (exists) {
       updated = stored.filter((r) => r.routeId !== routeId);
       showPopup("Removed from Favorites");
@@ -35,14 +70,13 @@ function RoutePage() {
         {
           routeId,
           routeName: name,
-          image: `/maps/${routeId}.png`, 
-          details: "Monday - Saturday | 43–54 mins | 25–33 km",
+          image: `/maps/${routeId}.png`,
+          details: "Monday - Saturday | Dynamic Schedule",
         },
       ];
       showPopup("Added to Favorites");
     }
-
-    localStorage.setItem(key, JSON.stringify(updated));
+    localStorage.setItem("favorites", JSON.stringify(updated));
     setIsFavorite(!exists);
   };
 
@@ -56,12 +90,6 @@ function RoutePage() {
       <div className="route-left">
         <div className="map-container">
           <RouteMap routeId={routeId} />
-        </div>
-        <div className="travel-info">
-          <p>
-            <strong>Estimated Time:</strong> 43–54 mins{" "}
-            <strong>Distance:</strong> 25–33 km
-          </p>
         </div>
       </div>
 
@@ -87,6 +115,7 @@ function RoutePage() {
       </div>
     </div>
   );
+  
 }
 
 export default RoutePage;

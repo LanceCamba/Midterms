@@ -13,7 +13,9 @@ const Schedule = ({ sheetName }) => {
       try {
         const res = await fetch(API_URL);
         const data = await res.json();
+
         const now = new Date();
+        const nowMinutes = now.getHours() * 60 + now.getMinutes();
 
         const parseTime = (t) => {
           const [time, meridian] = t.split(" ");

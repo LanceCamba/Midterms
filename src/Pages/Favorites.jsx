@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../Assets/Favorites.css";
+
+const MAP_LINKS = {
+  "imus-makati": "https://maps.app.goo.gl/Ha1pf7uDNhKBDX8u6",
+  "makati-imus": "https://maps.app.goo.gl/Ha1pf7uDNhKBDX8u6",
+  "atc-greenbelt": "https://maps.app.goo.gl/GMzFEXhWZhNmYgsQ7",
+  "greenbelt-atc": "https://maps.app.goo.gl/4qBAWonoFSh8iqYA6",
+  "atc-greenhills": "https://maps.app.goo.gl/ZBKgiiDTxfMQvSmL7",
+  "greenhills-atc": "https://maps.app.goo.gl/6uvsQwPGGG6LGqC87",
+  "laspinas-makati": "https://maps.app.goo.gl/ze5wifzTu9yD4oNb9",
+  "makati-laspinas": "https://maps.app.goo.gl/9EfboZooi1jszpLPA",
+  "calamba-bgc": "https://maps.app.goo.gl/9dFA72uMYeCKXosx9",
+  "bgc-calamba": "https://maps.app.goo.gl/vHRyL8t5MwwHfqUB8",
+  "nuvali-makati": "https://maps.app.goo.gl/YRqDHPvM3HCxrxqDA",
+  "makati-nuvali": "https://maps.app.goo.gl/r9f6HquDhw82iFoM8",
+};
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
-  const loggedInUser = sessionStorage.getItem("loggedInUser");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (loggedInUser) {
-      const savedFavorites =
-        JSON.parse(localStorage.getItem(`${loggedInUser}-favorites`)) || [];
-      setFavorites(savedFavorites);
-    }
-  }, [loggedInUser]);
+    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(stored);
+  }, []);
 
-  const handleRemove = (favToRemove) => {
-    const updatedFavorites = favorites.filter((fav) => fav.routeName !== favToRemove.routeName);
-    setFavorites(updatedFavorites);
-    localStorage.setItem(`${loggedInUser}-favorites`, JSON.stringify(updatedFavorites));
+  const handleRemove = (routeId) => {
+    const updated = favorites.filter((fav) => fav.routeId !== routeId);
+    localStorage.setItem("favorites", JSON.stringify(updated));
+    setFavorites(updated);
   };
-
-  if (!loggedInUser) {
-    return (
-      <div className="favorites-container">
-        <h2 className="favorites-title">You’re not logged in!</h2>
-        <p className="empty-favorites">Login or Sign up to add your favorite routes.</p>
-      </div>
-    );
-  }
 
   return (
     <div className="favorites-container">
@@ -36,21 +39,42 @@ function Favorites() {
       {favorites.length === 0 ? (
         <p className="empty-favorites">Add Your Favorite Routes!</p>
       ) : (
-        <div className="favorites-grid">
-          {favorites.map((fav, i) => (
-            <div className="fav-card" key={i}>
-              <img
-                src={fav.image || "/placeholder.jpg"}
-                alt={fav.routeName}
-                className="fav-image"
-              />
-              <h3>{fav.routeName}</h3>
-              <p>{fav.details || "Route info unavailable"}</p>
-              <button className="remove-btn" onClick={() => handleRemove(fav)}>
-                Remove
-              </button>
-            </div>
-          ))}
+         <div className="favorites-grid">
+          {favorites.map((fav, i) => {
+            const mapLink = MAP_LINKS[fav.routeId];
+            const staticMapImg = `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(
+              fav.routeName
+            )}&zoom=11&size=400x300&maptype=roadmap&key=${
+              process.env.REACT_APP_GOOGLE_MAPS_KEY
+            }`;
+
+            return (
+              <div className="fav-card" key={i}>
+                <img
+                  src={staticMapImg}
+                  alt={fav.routeName}
+                  className="fav-map-img"
+                  onClick={() => navigate(`/routes/${fav.routeId}`)}
+                />
+                <h4>{fav.routeName}</h4>
+                <p>{fav.details || "Route info unavailable"}</p>
+                <div className="fav-buttons">
+                  <button
+                    className="view-map-btn"
+                    onClick={() => window.open(mapLink, "_blank")}
+                  >
+                    View Map
+                  </button>
+                  <button
+                    className="remove-btn"
+                    onClick={() => handleRemove(fav.routeId)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
