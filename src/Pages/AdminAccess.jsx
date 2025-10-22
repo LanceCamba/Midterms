@@ -20,7 +20,7 @@ function AdminAccess() {
             className="admin-btn stations"
             onClick={() => navigate("/astation")}
           >
-            🚉 Manage Stations
+            Manage Stations
           </button>
         </div>
       </div>

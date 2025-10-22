@@ -372,19 +372,6 @@ const AdminScheduleEditor = () => {
           )}
         </>
       )}
-
-      <div style={{
-        marginTop: "30px",
-        padding: "15px",
-        backgroundColor: "#e7f3ff",
-        borderLeft: "4px solid #2196F3",
-        borderRadius: "4px"
-      }}>
-        <strong>✅ SheetDB Connected!</strong>
-        <p style={{ marginBottom: "0", marginTop: "8px", fontSize: "14px" }}>
-          You can now add, edit, and delete schedules. Changes will be reflected in your Google Sheet.
-        </p>
-      </div>
     </div>
   );
 };
