@@ -13,7 +13,7 @@ function AdminAccess() {
             className="admin-btn users"
             onClick={() => navigate("/userlist")}
           >
-            👥 Manage Users
+            Manage Users
           </button>
 
           <button

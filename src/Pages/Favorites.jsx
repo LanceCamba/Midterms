@@ -43,6 +43,10 @@ function Favorites() {
           {favorites.map((fav, i) => {
             const mapLink = MAP_LINKS[fav.routeId];
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+            // optional static preview image (you can change this to dynamic screenshot service later)
+>>>>>>> Stashed changes
 =======
             // optional static preview image (you can change this to dynamic screenshot service later)
 >>>>>>> Stashed changes
