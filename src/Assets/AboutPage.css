@@ -1,5 +1,5 @@
 .about-container {
-  margin-top: 80px;
+  margin: 30px;
 }
 
 .about-title {
@@ -16,11 +16,45 @@
   font-size: 1rem;
 }
 
+.form-label{
+  padding-top: 10px;
+}
+
 .about-image {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
 }
+
+.cont-image{
+  max-width: 98%;
+  height: 550px;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+.logo-img{
+  max-width: 100%;
+  width: 250px;
+  padding-bottom: 10px;
+}
+
+.botton{
+  background-color: #f25c1e;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  font-weight: 600;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.botton:hover {
+  background-color: #e4572e;
+}
+
 
 @media (max-width: 768px) {
   .about-container {

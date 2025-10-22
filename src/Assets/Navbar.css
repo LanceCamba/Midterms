@@ -198,6 +198,24 @@
   
 }
 
+.dropdown-user{
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 7px;
+  }
+  .logout-btn{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  .stext{
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: #3A7D44;
+  }
+
 .admin-navbar {
   background-color: #1a1a1a;
   color: white;

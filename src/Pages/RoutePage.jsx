@@ -10,14 +10,18 @@ function RoutePage() {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
-  // Load favorite status
+  const loggedInUser = sessionStorage.getItem("loggedInUser");
+
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
-    setIsFavorite(stored.some((r) => r.routeId === routeId));
-  }, [routeId]);
+    if (!loggedInUser) return;
+    const savedFavorites =
+      JSON.parse(localStorage.getItem(`${loggedInUser}-favorites`)) || [];
+    setIsFavorite(savedFavorites.some((r) => r.routeId === routeId));
+  }, [routeId, loggedInUser]);
 
   const handleFavorite = () => {
-    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
+    const key = `${loggedInUser}-favorites`;
+    const stored = JSON.parse(localStorage.getItem(key)) || [];
     const exists = stored.some((r) => r.routeId === routeId);
 
     let updated;
@@ -37,7 +41,7 @@ function RoutePage() {
       showPopup("Added to Favorites ");
     }
 
-    localStorage.setItem("favorites", JSON.stringify(updated));
+    localStorage.setItem(key, JSON.stringify(updated));
     setIsFavorite(!exists);
   };
 

@@ -5,6 +5,7 @@ import Metro from "../Assets/metro.png";
 import Bus from "../Assets/Bus.jpg";
 import "../Assets/MainPage.css";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Homepage() {
   const [from, setFrom] = useState("");
@@ -16,12 +17,31 @@ function Homepage() {
     "alabang-cubao": { from: "Alabang", to: "Cubao" },
   };
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-end",
+    showConfirmButton: false,
+    timer: 2500,
+    timerProgressBar: true,
+    background: "#f25c1e",
+    color: "#fff",
+  });
+
   const handleSwap = () => {
     setFrom(to);
     setTo(from);
   };
 
   const handleSearch = () => {
+    const loggedInUser = sessionStorage.getItem("loggedInUser");
+
+    if (!loggedInUser) {
+      Toast.fire({
+        title: "Please log in to access this feature",
+      });
+      return;
+    }
+
     const formattedFrom = from.trim().toLowerCase();
     const formattedTo = to.trim().toLowerCase();
 
@@ -34,7 +54,9 @@ function Homepage() {
     if (foundRoute) {
       navigate(`/routes/${foundRoute[0]}`);
     } else {
-      alert("No route found for that combination!");
+      Toast.fire({
+        title: "No route found!",
+      });
     }
   };
 
@@ -87,4 +109,3 @@ function Homepage() {
 }
 
 export default Homepage;
-

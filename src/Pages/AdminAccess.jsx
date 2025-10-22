@@ -8,9 +8,6 @@ function AdminAccess() {
   return (
     <div className="dashboard">
       <div className="content">
-        <h1>Welcome back, Admin!</h1>
-        <p className="subtitle">Manage your system from one place.</p>
-
         <div className="buttons">
           <button
             className="admin-btn users"

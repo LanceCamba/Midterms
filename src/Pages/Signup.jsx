@@ -8,35 +8,46 @@ import logo from "../Assets/metro.png";
 function Signup() {
   const navigate = useNavigate();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "bottom-end",
+    showConfirmButton: false,
+    timer: 2500,
+    timerProgressBar: true,
+    background: "#f25c1e",
+    color: "#fff",
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     const form = e.target;
+    const formData = new FormData(form);
+
+    const email = formData.get("data[Email]");
+    const name = formData.get("data[Name]");
 
     const response = await fetch("https://sheetdb.io/api/v1/mjsofaysxw41w", {
       method: "POST",
-      body: new FormData(form),
+      body: formData,
     });
 
     if (response.ok) {
-      Swal.fire({
-        title: "Account Created!",
-        text: "You’ve successfully signed up. Redirecting to the homepage...",
-        icon: "success",
-        confirmButtonColor: "#007bff",
-        timer: 2000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-      }).then(() => {
-        navigate("/"); 
+      sessionStorage.setItem("loggedInUser", JSON.stringify({ Name: name, Email: email }));
+      sessionStorage.setItem("userEmail", email);
+
+      Toast.fire({
+        title: "You’ve successfully signed up! Redirecting to the homepage...",
       });
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2500);
 
       form.reset();
     } else {
-      Swal.fire({
-        title: "Oops!",
-        text: "Something went wrong. Please try again.",
-        icon: "error",
-        confirmButtonColor: "#d33",
+      Toast.fire({
+        title: "Something went wrong. Please try again.",
       });
     }
   };
@@ -65,7 +76,6 @@ function Signup() {
         </form>
       </div>
     </div>
-
   );
 }
 

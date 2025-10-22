@@ -7,10 +7,10 @@ import HomePage from "./Pages/HomePage";
 import RoutePage from "./Pages/RoutePage";
 import Stations from "./Pages/Stations";
 import About from "./Pages/About";
+import ContactUs from "./Pages/ContactUs";
 import Favorites from "./Pages/Favorites";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
-import AdminLogin from "./Pages/AdminLogin";
 import AdminAccess from "./Pages/AdminAccess";
 import AStation from "./Pages/AStation";
 import UserListWithActions from "./Pages/UserList";
@@ -32,10 +32,10 @@ function AppContent() {
         <Route path="/routes/:routeId" element={<RoutePage />} />
         <Route path="/Stations" element={<Stations />} />
         <Route path="/about" element={<About />} />
+        <Route path="contactus" element={<ContactUs/>} />
         <Route path="/favorites" element={<Favorites />} /> 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<AdminLogin />} />
         <Route path="/adminaccess" element={<AdminAccess />} />
         <Route path="/userlist" element={<UserListWithActions />} />
         <Route path="/astation" element={<AStation />} />

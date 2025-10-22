@@ -30,6 +30,7 @@
   margin: 0 auto 10px auto;
   width: 350px;
   height: auto;
+  max-width: 100%;
 }
 
 .subtitle {

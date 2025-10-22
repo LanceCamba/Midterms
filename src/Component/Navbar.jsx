@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaSearch, FaUser } from "react-icons/fa";
 import logo from "../Assets/logo.png";
 import "../Assets/Navbar.css";
@@ -7,13 +7,25 @@ import "../Assets/Navbar.css";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
+  const loggedInUserData = sessionStorage.getItem("loggedInUser");
+  let loggedInUser;
 
-  const closeDropdown = () => {
-    setShowDropdown(false);
+  try {
+    loggedInUser = JSON.parse(loggedInUserData);
+  } catch {
+    loggedInUser = loggedInUserData ? { Name: loggedInUserData } : null;
+  }
+
+  const toggleDropdown = () => setShowDropdown(!showDropdown);
+  const closeDropdown = () => setShowDropdown(false);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("loggedInUser");
+    sessionStorage.removeItem("userRole");
+    closeDropdown();
+    navigate("/login");
   };
 
   return (
@@ -26,26 +38,35 @@ const Navbar = () => {
 
       <div className="navbar-right">
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-          <li><Link to="/about" onClick={() => setIsOpen(false)}>About</Link></li>
-          <li><Link to="/stations" onClick={() => setIsOpen(false)}>Stations</Link></li>
-          <li><Link to="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link></li>
-          <li><Link to="/favorites" onClick={() => setIsOpen(false)}>Favorites</Link></li>
+          <li>
+            <Link to="/stations" onClick={() => setIsOpen(false)}>Stations</Link>
+          </li>
+          <li>
+            <Link to="/favorites" onClick={() => setIsOpen(false)}>Favorites</Link>
+          </li>
+          
         </ul>
 
         <div className="nav-icons">
           <FaSearch className="nav-icon" />
 
           <div className="dropdown">
-            <FaUser
-              className="nav-icon user-icon"
-              onClick={toggleDropdown}
-            />
+            <FaUser className="nav-icon user-icon" onClick={toggleDropdown} />
 
             {showDropdown && (
               <div className="dropdown-content">
-                <Link to="/signup" onClick={closeDropdown}>Sign Up</Link>
-                <Link to="/login" onClick={closeDropdown}>Login</Link>
-                <Link to="/admin" onClick={closeDropdown}>Admin</Link>
+                {loggedInUser ? (
+                  <>
+                    <p className="dropdown-user">{loggedInUser.Name}</p>
+                    <p className="stext">Welcome to MexBus!</p>
+                    <button onClick={handleLogout} className="logout-btn">Logout</button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/signup" onClick={closeDropdown}> Sign Up </Link>
+                    <Link to="/login" onClick={closeDropdown}> Login </Link>
+                  </>
+                )}
               </div>
             )}
           </div>
