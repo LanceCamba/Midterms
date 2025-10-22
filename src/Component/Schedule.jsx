@@ -58,8 +58,8 @@ const Schedule = ({ sheetName }) => {
   return (
     <div className="schedule-content">
       <div className="schedule-header">
-        <span>Time</span>
-        <span>Status</span>
+        <span className="schedule-time">Time</span>
+        <span className="schedule-status">Status</span>
       </div>
       <div className="schedule-scroll">
         {schedule.length > 0 ? (

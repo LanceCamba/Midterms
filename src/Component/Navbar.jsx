@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaSearch, FaUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import logo from "../Assets/logo.png";
 import "../Assets/Navbar.css";
 
@@ -48,7 +48,6 @@ const Navbar = () => {
         </ul>
 
         <div className="nav-icons">
-          <FaSearch className="nav-icon" />
 
           <div className="dropdown">
             <FaUser className="nav-icon user-icon" onClick={toggleDropdown} />

@@ -61,24 +61,33 @@
 
 .time {
   font-weight: 500;
+  margin-left: 28px;
   color: #333;
 }
 
 .status {
   font-weight: 600;
+  margin-right: 28px;
   text-transform: capitalize;
+}
+
+.time-h{
+  margin-left: 30px;
 }
 
 .status.ontime {
   color: #00b050;
 }
+.status.delayed {
+  color: #d97025;
+}
 .status.boarding {
   color: #f4b400;
 }
-.status.delayed {
+.status.cancelled {
   color: #d93025;
 }
-.status.arrived {
+.status.arriving {
   color: #1a73e8;
 }
 
