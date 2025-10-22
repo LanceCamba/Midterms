@@ -14,7 +14,17 @@ function Homepage() {
 
   const routes = {
     "imus-makati": { from: "Imus", to: "Makati" },
-    "alabang-cubao": { from: "Alabang", to: "Cubao" },
+    "makati-imus": { from: "Makati", to: "Imus" },
+    "atc-greenbelt": { from: "Atc", to: "Greenbelt" },
+    "greenbelt-atc": { from: "Greenbelt", to: "Atc" },
+    "atc-greenhills": { from: "Atc", to: "Greenhills" },
+    "greenhills-atc": { from: "Greenhills", to: "Atc" },
+    "laspinas-makati": { from: "Las Piñas", to: "Makati" },
+    "makati-laspinas": { from: "Makati", to: "Las Piñas" },
+    "calamba-bgc": { from: "Calamba", to: "BGC" },
+    "bgc-calamba": { from: "BGC", to: "Calamba" },
+    "nuvali-makati": { from: "Nuvali", to: "Makati" },
+    "makati-nuvali": { from: "Makati", to: "Nuvali" },
   };
 
   const Toast = Swal.mixin({
