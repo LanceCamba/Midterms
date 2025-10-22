@@ -245,7 +245,7 @@ const AdminScheduleEditor = () => {
       ) : (
         <>
           <table className="table table-bordered table-striped text-center">
-            <thead className="table-dark">
+            <thead className="table-light">
               <tr>
                 <th>#</th>
                 <th>Time</th>

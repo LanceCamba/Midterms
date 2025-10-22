@@ -15,7 +15,6 @@
   text-align: center;
 }
 
-/* Glass card */
 .search-card {
   background: rgba(255, 255, 255, 0.65);
   border-radius: 12px;
@@ -37,8 +36,8 @@
   font-size: 19px;
   color: #333;
   font-weight: 600;
-  margin-top: -10px;
-  margin-bottom: 15px;
+  margin-top: -30px;
+  margin-bottom: 20px;
 }
 
 .location-inputs {
@@ -89,7 +88,7 @@
   background-color: #d94d15;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .main-container {
     justify-content: center;
@@ -101,12 +100,22 @@
     width: 90%;
   }
 
-  .location-inputs {
-    flex-direction: column;
-    gap: 12px;
+  .form-control{
+    padding: 10px;
+    gap: 5px;
   }
 
   .swap-btn {
-    margin: 5px 0;
+    padding: 0 10px;
   }
+
+  .location-inputs > input {
+    padding: 10px 8px;
+  }
+
+  .subtitle {
+  font-size: 16px;
+  margin-top: -25px;
+  margin-bottom: -15px;
+}
 }

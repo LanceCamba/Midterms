@@ -116,7 +116,6 @@
   color: #F26134;
 }
 
-/* Optional subtle animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -156,7 +155,6 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* ✅ MOBILE RESPONSIVENESS */
 @media (max-width: 900px) {
   .navbar {
     padding: 10px 20px;
@@ -186,7 +184,8 @@
   }
 
   .nav-icons {
-    display: none;
+    display: flex;
+    margin-right: -18px;
   }
 
   .dropdown-content {

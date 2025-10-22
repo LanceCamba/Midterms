@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Navbar from "./Component/Navbar";
 import AdminNavbar from "./Component/AdminNavbar";
 import Footer from "./Component/Footer";
+import StationDetails from "./Component/StationDetails";
 import HomePage from "./Pages/HomePage";
 import RoutePage from "./Pages/RoutePage";
 import Stations from "./Pages/Stations";
@@ -19,7 +20,7 @@ import "./App.css";
 
 function AppContent() {
   const location = useLocation();
-  const adminRoutes = ["/adminaccess", "/userlist", "/aschedule"];
+  const adminRoutes = ["/AdminNavbar", "/adminaccess", "/userlist", "/aschedule"];
 
   const isAdminPage = adminRoutes.some((path) => location.pathname.startsWith(path));
 
@@ -30,7 +31,8 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/routes/:routeId" element={<RoutePage />} />
-        <Route path="/Stations" element={<Stations />} />
+        <Route path="/stations" element={<Stations />} />
+        <Route path="/stations/:id" element={<StationDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="contactus" element={<ContactUs/>} />
         <Route path="/favorites" element={<Favorites />} /> 

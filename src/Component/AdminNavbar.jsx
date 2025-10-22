@@ -25,9 +25,7 @@ const AdminNavbar = () => {
           <li><Link to="/userlist" onClick={() => setIsOpen(false)}>Users</Link></li>
         </ul>
 
-        <div className="nav-icons">
-          <FaSearch className="nav-icon" />
-
+        <div className="nav-icons"> 
           <div className="dropdown">
             <FaUser
               className="nav-icon user-icon"
@@ -35,8 +33,8 @@ const AdminNavbar = () => {
             />
             {showDropdown && (
               <div className="dropdown-content">
-                <Link to="/" onClick={closeDropdown}>Back to Site</Link>
-                <Link to="/admin" onClick={closeDropdown}>Logout</Link>
+                <Link to="/" onClick={closeDropdown}>Logout</Link>
+                <Link to="/adminaccess" onClick={closeDropdown}>Back to Admin Page</Link>
               </div>
             )}
           </div>

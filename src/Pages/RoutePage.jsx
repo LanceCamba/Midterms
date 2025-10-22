@@ -71,7 +71,7 @@ function RoutePage() {
           routeId,
           routeName: name,
           image: `/maps/${routeId}.png`,
-          details: "Monday - Saturday | Dynamic Schedule",
+          details: "Monday - Saturday",
         },
       ];
       showPopup("Added to Favorites");
@@ -106,12 +106,9 @@ function RoutePage() {
 
         <p className="days">Monday - Saturday</p>
         <div className="schedule-box">
-          <h3><strong>Schedules:</strong></h3>
+          <h3>Schedules:</h3>
           <Schedule sheetName={sheet} />
         </div>
-
-        <p className="current-time">Current Time: {time}</p>
-        {showToast && <div className="toast-popup">{showToast}</div>}
       </div>
     </div>
   );

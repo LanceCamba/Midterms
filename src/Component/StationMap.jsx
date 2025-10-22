@@ -20,18 +20,15 @@ function RouteMap({ routeId }) {
   });
 
   const routeCoordinates = {
-    "imus-makati": ["District Imus, Cavite", "One Ayala Terminal, Makati"],
-    "makati-imus": ["One Ayala Terminal, Makati", "District Imus, Cavite"],
-    "atc-greenbelt": ["Alabang Town Center, Muntinlupa", "Greenbelt 1, Makati"],
-    "greenbelt-atc": ["Greenbelt 1, Makati", "Alabang Town Center, Muntinlupa"],
-    "atc-greenhills": ["Alabang Town Center, Muntinlupa", "Greenhills, San Juan"],
-    "greenhills-atc": ["Greenhills, San Juan", "Alabang Town Center, Muntinlupa"],
-    "laspinas-makati": ["Las Piñas City", "One Ayala Terminal, Makati"],
-    "makati-laspinas": ["One Ayala Terminal, Makati", "Las Piñas City"],
-    "calamba-bgc": ["Calamba, Laguna", "BGC, Taguig"],
-    "bgc-calamba": ["BGC, Taguig", "Calamba, Laguna"],
-    "nuvali-makati": ["Nuvali, Santa Rosa, Laguna", "One Ayala Terminal, Makati"],
-    "makati-nuvali": ["One Ayala Terminal, Makati", "Nuvali, Santa Rosa, Laguna"],
+    "imus": ["District Imus, Cavite"],
+    "makati": ["One Ayala Terminal, Makati"],
+    "atc": ["Alabang Town Center, Muntinlupa"],
+    "greenbelt": ["Greenbelt 1, Makati"],
+    "greenhills": ["Greenhills, San Juan"],
+    "laspinas": ["Las Piñas City"],
+    "calamba": ["Calamba, Laguna"],
+    "bgc": ["BGC, Taguig"],
+    "nuvali": ["Nuvali, Santa Rosa, Laguna"],
   };
 
   useEffect(() => {

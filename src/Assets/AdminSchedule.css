@@ -57,7 +57,6 @@
   color: #555;
 }
 
-/* 📱 Responsive tweaks */
 @media (max-width: 768px) {
   .route-select {
     width: 90%;
