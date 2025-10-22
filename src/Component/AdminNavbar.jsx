@@ -21,7 +21,7 @@ const AdminNavbar = () => {
 
       <div className="navbar-right">
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-          <li><Link to="/aschedule" onClick={() => setIsOpen(false)}>Stations</Link></li>
+          <li><Link to="/aschedule" onClick={() => setIsOpen(false)}>Schedule</Link></li>
           <li><Link to="/userlist" onClick={() => setIsOpen(false)}>Users</Link></li>
         </ul>
 
