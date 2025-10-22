@@ -29,7 +29,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
+    <nav className="navbar fixed-top">
       <div className="navbar-left">
         <Link to="/" className="navbar-logo">
           <img src={logo} alt="logo" />

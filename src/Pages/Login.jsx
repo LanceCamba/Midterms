@@ -83,7 +83,8 @@ function Login() {
   };
 
   return (
-    <div className="signup-container">
+    <div className="bg">
+    <div className="signup-container"      >
       <div className="box">
         <form onSubmit={handleLogin} className="form">
           <img src={logo} alt="Metro Express Logo" className="logo" />
@@ -106,6 +107,7 @@ function Login() {
           </p>
         </form>
       </div>
+    </div>
     </div>
   );
 }

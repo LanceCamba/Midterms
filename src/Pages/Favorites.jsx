@@ -20,17 +20,28 @@ const MAP_LINKS = {
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
+  const loggedInUser = sessionStorage.getItem("loggedInUser");
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (!loggedInUser) return;
+    const stored = JSON.parse(localStorage.getItem(`${loggedInUser}-favorites`)) || [];
     setFavorites(stored);
-  }, []);
+  }, [loggedInUser]);
 
   const handleRemove = (routeId) => {
     const updated = favorites.filter((fav) => fav.routeId !== routeId);
-    localStorage.setItem("favorites", JSON.stringify(updated));
+    localStorage.setItem(`${loggedInUser}-favorites`, JSON.stringify(updated));
     setFavorites(updated);
   };
+
+  if (!loggedInUser) {
+    return (
+      <div className="favorites-container">
+        <h2 className="favorites-title">You’re not logged in!</h2>
+        <p className="empty-favorites">Login or Sign up to add your favorite routes.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="favorites-container">
@@ -39,7 +50,7 @@ function Favorites() {
       {favorites.length === 0 ? (
         <p className="empty-favorites">Add Your Favorite Routes!</p>
       ) : (
-         <div className="favorites-grid">
+        <div className="favorites-grid">
           {favorites.map((fav, i) => {
             const mapLink = MAP_LINKS[fav.routeId];
             const staticMapImg = `https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(

@@ -13,6 +13,7 @@ import Favorites from "./Pages/Favorites";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import AdminAccess from "./Pages/AdminAccess";
+import AdminMessages from "./Pages/AdminMessages";
 import ASchedule from "./Pages/ASchedule";
 import UserListWithActions from "./Pages/UserList";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,7 +21,7 @@ import "./App.css";
 
 function AppContent() {
   const location = useLocation();
-  const adminRoutes = ["/AdminNavbar", "/adminaccess", "/userlist", "/aschedule"];
+  const adminRoutes = ["/AdminNavbar", "/adminaccess", "/userlist", "/aschedule", "/messages"];
 
   const isAdminPage = adminRoutes.some((path) => location.pathname.startsWith(path));
 
@@ -41,6 +42,7 @@ function AppContent() {
         <Route path="/adminaccess" element={<AdminAccess />} />
         <Route path="/userlist" element={<UserListWithActions />} />
         <Route path="/aschedule" element={<ASchedule />} />
+        <Route path="/messages" element={<AdminMessages />} />
       </Routes>
       <Footer />
     </>

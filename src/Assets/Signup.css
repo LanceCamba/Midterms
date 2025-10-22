@@ -5,11 +5,17 @@
   font-family: "Inter", sans-serif;
 }
 
+.bg{
+  background-image: url(BGv2.png);
+  background-size: cover;
+  height: 100vh;
+}
+
 .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 100px;
   margin-bottom: 50px;
 }
 
@@ -20,6 +26,7 @@
   border-style: inset;
   padding: 2rem;
   text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .form label {

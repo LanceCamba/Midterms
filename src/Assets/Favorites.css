@@ -1,10 +1,14 @@
 .favorites-container {
   padding: 40px;
   text-align: center;
+  margin-top: 50px;
+  background-image: url(BGv2.png);
+  background-size: cover;
+  height: 100vh;
 }
 
 .favorites-title {
-  color: #f15f0a;
+  color: #fff;
   font-weight: bold;
   font-weight: 800px;
   margin-bottom: 30px;

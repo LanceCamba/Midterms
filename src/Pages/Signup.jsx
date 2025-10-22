@@ -53,7 +53,8 @@ function Signup() {
   };
 
   return (
-    <div className="signup-container">
+    <div className="bg">
+    <div className="signup-container"      >
       <div className="box">
         <form onSubmit={handleSubmit} id="sheetdb-form" className="form">
           <img src={logo} alt="Metro Express Logo" className="logo" />
@@ -75,6 +76,7 @@ function Signup() {
           </p>
         </form>
       </div>
+    </div>
     </div>
   );
 }

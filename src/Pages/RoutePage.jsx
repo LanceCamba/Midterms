@@ -9,10 +9,10 @@ function RoutePage() {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [time, setTime] = useState("");
-
   const { routeId } = useParams();
-  console.log("ROUTE ID:", routeId);
-  
+
+  const loggedInUser = sessionStorage.getItem("loggedInUser");
+
   const routes = {
     "imus-makati": { name: "IMUS → MAKATI", sheet: "IMUS-MAKATI" },
     "makati-imus": { name: "MAKATI → IMUS", sheet: "MAKATI-IMUSs" },
@@ -27,11 +27,11 @@ function RoutePage() {
     "nuvali-makati": { name: "NUVALI → MAKATI", sheet: "NUVALI-MAKATI" },
     "makati-nuvali": { name: "MAKATI → NUVALI", sheet: "MAKATI-NUVALI" },
   };
-  
+
   const route = routes[routeId] || null;
   const name = route?.name || "Route Not Found";
   const sheet = route?.sheet || null;
-  
+
   useEffect(() => {
     const now = new Date();
     setTime(now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
@@ -43,21 +43,19 @@ function RoutePage() {
   }, []);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (!loggedInUser) return;
+    const stored = JSON.parse(localStorage.getItem(`${loggedInUser}-favorites`)) || [];
     setIsFavorite(stored.some((r) => r.routeId === routeId));
-  }, [routeId]);
-  
-  if (!route) {
-  return (
-    <div className="route-container">
-      <h2 style={{ textAlign: "center", color: "#e65c00", width: "100%" }}>
-        Route not found
-      </h2>
-    </div>
-  );}
+  }, [routeId, loggedInUser]);
 
   const handleFavorite = () => {
-    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (!loggedInUser) {
+      showPopup("Please log in to save favorites");
+      return;
+    }
+
+    const key = `${loggedInUser}-favorites`;
+    const stored = JSON.parse(localStorage.getItem(key)) || [];
     const exists = stored.some((r) => r.routeId === routeId);
     let updated;
 
@@ -71,12 +69,13 @@ function RoutePage() {
           routeId,
           routeName: name,
           image: `/maps/${routeId}.png`,
-          details: "Monday - Saturday",
+          details: "Monday - Saturday | Dynamic Schedule",
         },
       ];
       showPopup("Added to Favorites");
     }
-    localStorage.setItem("favorites", JSON.stringify(updated));
+
+    localStorage.setItem(key, JSON.stringify(updated));
     setIsFavorite(!exists);
   };
 
@@ -84,6 +83,16 @@ function RoutePage() {
     setShowToast(msg);
     setTimeout(() => setShowToast(false), 2000);
   };
+
+  if (!route) {
+    return (
+      <div className="route-container">
+        <h2 style={{ textAlign: "center", color: "#e65c00", width: "100%" }}>
+          Route not found
+        </h2>
+      </div>
+    );
+  }
 
   return (
     <div className="route-container">
@@ -106,13 +115,15 @@ function RoutePage() {
 
         <p className="days">Monday - Saturday</p>
         <div className="schedule-box">
-          <h3>Schedules:</h3>
+          <h3><strong>Schedules:</strong></h3>
           <Schedule sheetName={sheet} />
         </div>
+
+        <p className="current-time">Current Time: {time}</p>
+        {showToast && <div className="toast-popup">{showToast}</div>}
       </div>
     </div>
   );
-  
 }
 
 export default RoutePage;
