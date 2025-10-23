@@ -15,7 +15,7 @@ function RoutePage() {
 
   const routes = {
     "imus-makati": { name: "IMUS → MAKATI", sheet: "IMUS-MAKATI" },
-    "makati-imus": { name: "MAKATI → IMUS", sheet: "MAKATI-IMUSs" },
+    "makati-imus": { name: "MAKATI → IMUS", sheet: "MAKATI-IMUS" },
     "atc-greenbelt": { name: "ATC → GREENBELT", sheet: "ATC-GREENBELT" },
     "greenbelt-atc": { name: "GREENBELT → ATC", sheet: "GREENBELT-ATC" },
     "atc-greenhills": { name: "ATC → GREENHILLS", sheet: "ATC-GREENHILLS" },
