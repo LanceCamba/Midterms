@@ -84,7 +84,7 @@ function Homepage() {
       >
         <div className="search-card p-4 shadow-lg rounded-4">
           <img src={Metro} alt="Metro Express" className="logo-img mb-3" />
-          <p className="subtitle fw-bold text-center">
+          <p className="subtitle fw-bold">
             Premium Point To Point Bus
           </p>
 

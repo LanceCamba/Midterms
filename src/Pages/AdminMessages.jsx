@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import "../Assets/UserList.css"; // reuse same table styles
+import "../Assets/UserList.css"; 
 
 const AdminMessages = () => {
     const [messages, setMessages] = useState([]);
@@ -55,7 +55,6 @@ const AdminMessages = () => {
     }
     };
 
-    // Pagination logic
     const indexOfLastMessage = currentPage * messagesPerPage;
     const indexOfFirstMessage = indexOfLastMessage - messagesPerPage;
     const currentMessages = messages.slice(indexOfFirstMessage, indexOfLastMessage);
@@ -63,7 +62,7 @@ const AdminMessages = () => {
 
     return (
     <div className="container mt-5">
-        <h2 className="text-center mb-4">📩 User Contact Messages</h2>
+        <h2 className="text-center mb-4">User Contact Messages</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         
         <table className="table table-bordered table-striped text-center">
@@ -95,7 +94,7 @@ const AdminMessages = () => {
     ) : (
     <tr>
         <td colSpan="4" className="text-center">
-        No messages found 📭
+        No messages found 
         </td>
     </tr>
     )}

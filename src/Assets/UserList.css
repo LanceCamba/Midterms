@@ -16,30 +16,32 @@ h2 {
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .table th {
   background-color: #f25c1e;
-  color: #333;
+  color: #fff;
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.05em;
   padding: 12px;
   border: 1px solid #ccc;
+  white-space: nowrap;
 }
 
 .table td {
   vertical-align: middle;
   font-size: 15px;
   color: #333;
+  padding: 12px;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #f5f7fa;
 }
 
-/* === INPUT FIELDS FOR EDIT MODE === */
+/* Input Styling */
 input {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -48,11 +50,19 @@ input {
   width: 100%;
 }
 
-/* === BUTTON STYLES === */
+input:focus {
+  outline: none;
+  border-color: #f25c1e;
+  box-shadow: 0 0 0 3px rgba(242, 92, 30, 0.1);
+}
+
+/* Button Styling */
 .btn {
   border-radius: 8px;
   padding: 5px 10px;
   transition: all 0.2s ease;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .btn-warning {
@@ -63,78 +73,363 @@ input {
 
 .btn-warning:hover {
   background-color: #e0a800;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
 }
 
 .btn-danger {
   background-color: #dc3545;
+  color: white;
   border: none;
 }
 
 .btn-danger:hover {
   background-color: #bb2d3b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
 }
 
 .btn-success {
   background-color: #28a745;
+  color: white;
   border: none;
 }
 
 .btn-success:hover {
   background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
 }
 
 .btn-secondary {
   background-color: #6c757d;
+  color: white;
   border: none;
 }
 
 .btn-secondary:hover {
   background-color: #5a6268;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
 }
 
-/* === PAGINATION === */
+/* Pagination */
 .pagination {
   margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.page-item {
+  margin: 0 2px;
 }
 
 .page-item.active .page-link {
   background-color: #f25c1e;
-  border-color: #222831;
-  color: #333;
+  border-color: #f25c1e;
+  color: white;
 }
 
 .page-link {
-  border-color: #222831;
+  border-color: #dee2e6;
   border-radius: 6px;
-  transition: 0.2s;
-}
-
-.page-link:hover {
-  background-color: #d94d15;
+  transition: all 0.2s ease;
+  padding: 8px 12px;
   color: #333;
 }
 
-@media (max-width: 768px) {
-  .table {
+.page-link:hover {
+  background-color: #f25c1e;
+  border-color: #f25c1e;
+  color: white;
+}
+
+.page-item.disabled .page-link {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive Design - Large Tablets and Small Laptops */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 95%;
+    padding: 25px;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 8px;
     font-size: 14px;
   }
+}
 
-  .form-select,
+/* Responsive Design - Tablets */
+@media (max-width: 992px) {
+  .container {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .table {
+    font-size: 13px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 6px;
+  }
+
   .btn {
-    width: 100%;
+    padding: 4px 8px;
+    font-size: 13px;
+    margin: 2px;
   }
 
-  .d-flex.gap-2 {
-    flex-direction: column;
+  input {
+    font-size: 13px;
+    padding: 4px 8px;
   }
 
-  .table-responsive {
+  .pagination {
+    margin-top: 20px;
+  }
+
+  .page-link {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+/* Responsive Design - Mobile Landscape and Small Tablets */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    border-radius: 10px;
     overflow-x: auto;
   }
 
-  .form-control,
-  .form-select {
-    font-size: 14px;
-    padding: 6px;
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  /* Make table scrollable horizontally */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 15px;
+  }
+
+  .table {
+    min-width: 700px;
+    font-size: 12px;
+  }
+
+  .table th {
+    font-size: 11px;
+    padding: 8px 6px;
+  }
+
+  .table td {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  /* Stack action buttons vertically on mobile */
+  .table td .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .table td .btn:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Input fields in edit mode */
+  input {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+
+  /* Pagination adjustments */
+  .pagination {
+    margin-top: 15px;
+    gap: 3px;
+  }
+
+  .page-link {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  /* Hide page numbers on very small screens, show only prev/next */
+  .page-item:not(.disabled):not(:first-child):not(:last-child) {
+    display: none;
+  }
+
+  .page-item:nth-child(2),
+  .page-item:nth-last-child(2) {
+    display: inline-block;
+  }
+}
+
+/* Responsive Design - Mobile Portrait */
+@media (max-width: 576px) {
+  .container {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .table {
+    min-width: 650px;
+    font-size: 11px;
+  }
+
+  .table th {
+    font-size: 10px;
+    padding: 6px 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .table td {
+    padding: 6px 4px;
+    font-size: 11px;
+  }
+
+  .btn {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+
+  input {
+    font-size: 11px;
+    padding: 3px 5px;
+  }
+
+  .page-link {
+    padding: 4px 6px;
+    font-size: 11px;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+  .container {
+    padding: 8px;
+    margin: 5px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  .table {
+    min-width: 600px;
+  }
+
+  /* Adjust button spacing */
+  .table td {
+    white-space: nowrap;
+  }
+
+  /* Make pagination stack on very small screens */
+  .pagination {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* Scrollbar Styling for Table */
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #f25c1e;
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #d94d15;
+}
+
+/* Loading State */
+.loading-spinner {
+  text-align: center;
+  padding: 40px;
+  color: #f25c1e;
+}
+
+/* Empty State */
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Action Buttons Container */
+.action-buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Improved Focus States for Accessibility */
+.btn:focus,
+input:focus,
+.page-link:focus {
+  outline: 2px solid #f25c1e;
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .btn,
+  .pagination {
+    display: none;
+  }
+
+  .container {
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .table {
+    font-size: 10pt;
   }
 }

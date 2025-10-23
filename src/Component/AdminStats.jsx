@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-    AreaChart,
-    Area,
-    CartesianGrid,
-    XAxis,
-    Tooltip,
-    ResponsiveContainer,
-    } from "recharts";
-import "../Assets/Stat.css"; // External style file
+import {AreaChart, Area, CartesianGrid, XAxis, Tooltip, ResponsiveContainer, } from "recharts";
+import "../Assets/Stat.css"; 
 
     const AdminStats = () => {
     const [userData, setUserData] = useState([]);
     const [scheduleData, setScheduleData] = useState([]);
     const [messageData, setMessageData] = useState([]);
 
-    // 👥 Fetch Users data
     useEffect(() => {
     fetch("https://sheetdb.io/api/v1/mjsofaysxw41w")
         .then((res) => res.json())
@@ -35,7 +27,6 @@ import "../Assets/Stat.css"; // External style file
         .catch((err) => console.error("Error fetching user data:", err));
     }, []);
 
-    // 📅 Fetch Schedule data
     useEffect(() => {
     fetch("https://sheetdb.io/api/v1/iqe4w67dofyxj")
         .then((res) => res.json())
@@ -56,7 +47,6 @@ import "../Assets/Stat.css"; // External style file
         .catch((err) => console.error("Error fetching schedule data:", err));
     }, []);
 
-    // 💬 Fetch Messages data
     useEffect(() => {
     fetch("https://sheetdb.io/api/v1/8i0xrsehdkbfc")
         .then((res) => res.json())
@@ -101,7 +91,6 @@ import "../Assets/Stat.css"; // External style file
             </ResponsiveContainer>
         </div>
 
-        {/* 📅 Schedule Chart */}
         <div className="stats-card">
             <h4>Schedules Created</h4>
             <ResponsiveContainer width="100%" height={300}>
@@ -120,7 +109,6 @@ import "../Assets/Stat.css"; // External style file
             </ResponsiveContainer>
         </div>
 
-        {/* 💬 Messages Chart */}
         <div className="stats-card">
             <h4>Messages Received</h4>
             <ResponsiveContainer width="100%" height={300}>

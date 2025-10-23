@@ -5,28 +5,33 @@
   font-family: "Inter", sans-serif;
 }
 
-.bg{
+.bg {
   background-image: url(BGv2.png);
   background-size: cover;
-  height: 100vh;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  width: 100%;
+  padding: 60px 20px;
+  margin-top: 55px;
 }
 
 .box {
   width: 600px;
-  background: #e5e5e5;
+  background: #ffffff;
   border-radius: 12px;
-  border-style: inset;
   padding: 2rem;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
 .form label {
@@ -39,7 +44,7 @@
 
 .form input {
   width: 100%;
-  padding: 8px 12px;
+  padding: 10px 14px;
   margin: 5px 0 15px 0;
   border-radius: 10px;
   border: 1px solid #aaa;
@@ -49,7 +54,7 @@
 .logo {
   max-width: 100%;
   width: 300px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .button {
@@ -57,10 +62,11 @@
   border: none;
   color: #fff;
   border-radius: 10px;
-  padding: 10px;
+  padding: 12px;
   width: 100%;
   font-weight: 600;
   cursor: pointer;
+  transition: 0.3s ease;
 }
 
 .button:hover {
@@ -68,11 +74,80 @@
 }
 
 .sText {
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 15px;
+  color: #333;
+}
+
+@media (max-width: 992px) {
+  .box {
+    width: 80%;
+    padding: 1.8rem;
+  }
+
+  .form label {
+    font-size: 16px;
+  }
+
+  .form input {
+    font-size: 15px;
+  }
+
+  .button {
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 600px) {
+  .bg {
+    background-size: cover;
+    background-position: center;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+
+  .signup-container {
+    padding: 30px 15px;
+  }
+
   .box {
-    width: 90%;
+    width: 100%;
+    padding: 1.5rem;
+    margin: 0 auto;
+  }
+
+  .logo {
+    width: 200px;
+  }
+
+  .form label {
+    font-size: 15px;
+  }
+
+  .form input {
+    font-size: 14px;
+  }
+
+  .button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .sText {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .box {
+    padding: 1.2rem;
+  }
+
+  .logo {
+    width: 180px;
+  }
+
+  .form label {
+    font-size: 14px;
   }
 }
